@@ -1,6 +1,12 @@
-import Logo from "../../assets/Logo.svg";
+//Libs
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
+//Assets
+import Logo from "../../assets/Logo.svg";
+
+//Styles
 import {
   Container,
   Header,
@@ -8,13 +14,19 @@ import {
   ContentList,
   HeaderList,
   Content,
+  ListTasks,
+  Task,
 } from "./styles";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 
 function ToDoList() {
   const [taskCreated, setTaskCreated] = useState(0);
   const [taskConcluded, setTaskConclued] = useState(0);
+
+  // id: Date.now(),
+
+  const test = [
+    "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
+  ];
 
   return (
     <Container>
@@ -45,6 +57,22 @@ function ToDoList() {
               <button type="button">{taskConcluded}</button>
             </div>
           </HeaderList>
+
+          <ListTasks>
+            {test.map((p) => {
+              return (
+                <Task>
+                  <label className="check">
+                    <input type="checkbox" />
+                    <div className="box"></div>
+                  </label>
+
+                  <span>{p}</span>
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </Task>
+              );
+            })}
+          </ListTasks>
         </ContentList>
       </Content>
     </Container>
